@@ -1,9 +1,17 @@
-var http = require('http');
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    var message = 'It works!\n',
-        version = 'NodeJS ' + process.versions.node + '\n',
-        response = [message, version].join('\n');
-    res.end(response);
+const express = require("express");
+const app = express();
+const port = 443;
+const path = require("path");
+app.set("view engine","ejs");
+app.set("views","./view");
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", function(req,res) {
+    res.render("home"); 
 });
-server.listen();
+
+app.get("/imageHeader", function(req,res) {
+    
+})
+
+app.listen(3000);
